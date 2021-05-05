@@ -1,0 +1,63 @@
+(py3Env)
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$ pip list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 56.0.0
+(py3Env)
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$ deactivate
+
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$ pip3 list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 56.0.0
+
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$  source py3Env/Scripts/activate
+(py3Env)
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$ pip3 list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 56.0.0
+(py3Env)
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$  source py3Env/Scripts/activate
+(py3Env)
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$ pip install Django==2.2.4
+Collecting Django==2.2.4
+  Downloading Django-2.2.4-py3-none-any.whl (7.5 MB)
+Collecting sqlparse
+  Downloading sqlparse-0.4.1-py3-none-any.whl (42 kB)
+Collecting pytz
+  Downloading pytz-2021.1-py2.py3-none-any.whl (510 kB)
+Installing collected packages: sqlparse, pytz, Django
+Successfully installed Django-2.2.4 pytz-2021.1 sqlparse-0.4.1
+(py3Env)
+user@Huthifa MINGW64 /e/course/Pyhton/my-environments
+$ pip freeze
+Django==2.2.4
+pytz==2021.1
+sqlparse==0.4.1
+(py3Env)
+user@Huthifa MINGW64 /c/users/user
+$ cd desktop
+(py3Env)
+user@Huthifa MINGW64 /c/users/user/desktop
+$ pip freeze > requirements.txt
+bash: \course\Pyhton\my-environments\py3Env/Scripts/pip: No such file or directory
+(py3Env)
+user@Huthifa MINGW64 /c/users/user/desktop
+$ pip uninstall Django
+bash: \course\Pyhton\my-environments\py3Env/Scripts/pip: No such file or directory
+(py3Env)
+user@Huthifa MINGW64 /c/users/user/desktop
+$ pip show Django
+bash: \course\Pyhton\my-environments\py3Env/Scripts/pip: No such file or directory
+(py3Env)
