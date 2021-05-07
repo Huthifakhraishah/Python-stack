@@ -7,7 +7,7 @@ class BankAccount:
         self.balance+=amount
         return self
     def withdraw(self, amount):
-        self.balance+=amount
+        self.balance-=amount
         return self
     def display_account_info(self):
         print(f"{self.name} ",f"Balance = {self.balance} ",f"Intrestre rate = {self.int_rate} ")
