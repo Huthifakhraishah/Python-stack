@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        main{
+        min-height:900px ;
+}
+main div  {
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+    border: 1px solid black;
+            }
+    </style>
+</head>
+<body>
+    <main>
+        {% for i in range(num) %}
+        <div class="i" style="background-color: {{backgorund_color}}"> </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

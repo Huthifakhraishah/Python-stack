@@ -11,27 +11,24 @@ class BankAccount:
     def display_account_info(self):
         print(f"{self.name} ",f"Balance = {self.balance} ",f"Intrestre rate = {self.int_rate} ")
         return self
-    def yield_interest(self):
+    def accountnum(self,num):
         self.balance=self.balance+self.balance*self.int_rate
+        self.num=num
         return self
 class User:
     def __init__(self,name,account):
         self.account= BankAccount()
         self.name=name
-    def make_deposite(self,amount):
-        self.account.deposit(amount).yield_interest()
+    def make_deposite(self,amount,num):
+        self.account.deposit(amount).accountnum(num)
         return self
-    def make_withdrawal(self,amount):
-        self.account.withdraw(amount).yield_interest()
+    def make_withdrawal(self,amount,num):
+        self.account.withdraw(amount).accountnum(num)
         return self
-huthifa=User("huthifa",1)
-huthifa.make_deposite(1000).make_deposite(1000).make_deposite(1000).make_withdrawal(100)
-print(f"His name is {huthifa.name} and he has {huthifa.account.balance} $$ in his bank")
-layth=User("layth",2)
-layth.make_deposite(1000).make_deposite(1000).make_withdrawal(100)
-print(f"His name is {layth.name} and he has {layth.account.balance} $ in his bank")
-lana=User("lana",3)
-lana.make_deposite(1000).make_withdrawal(100).make_withdrawal(100).make_withdrawal(100)
-print(f"Her name is {lana.name} and she has {lana.account.balance} $ in her bank")
+huthifa=User("huthifa")
+huthifa.make_deposite(1000,1).make_deposite(1000,1).make_deposite(1000,1).make_withdrawal(100,1)
+print(f"His name is {huthifa.name} and he has {huthifa.account.balance} $$ in his bank acount {huthifa.account.num} ")
+huthifa.make_deposite(100,2).make_deposite(200,2).make_deposite(100,2).make_withdrawal(100,2)
+print(f"His name is {huthifa.name} and he has {huthifa.account.balance} $$ in his bank acount {huthifa.account.num} ")
 
 
