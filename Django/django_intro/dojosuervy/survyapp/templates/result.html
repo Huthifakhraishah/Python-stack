@@ -15,12 +15,12 @@
     <body>
         <main>
             <form action="/">
-                <p>name = {{name}}</p>
-                <p>dojo = {{location}}</p>
-                <p>favourite = {{favourite}}</p>
-                <p>comment = {{comment}}</p>
-                <p>radio = {{radio}}</p>
-                <p>check = {{check}}</p>
+                <p>name = {{request.session.name}}</p>
+                <p>dojo = {{request.session.location}}</p>
+                <p>favourite = {{request.session.favourite}}</p>
+                <p>comment = {{request.session.comment}}</p>
+                <p>radio = {{request.session.radio}}</p>
+                <p>check = {{request.session.check}}</p>
                 <input type="submit">
             </form>
         </main>
