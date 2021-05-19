@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number</title>
+    <style>
+        *{
+            margin: 0 auto;
+            text-align: center;
+        }
+        .right{
+            background-color: green;
+            width: 250px;
+            height: 250px;
+        }
+        .rong{
+            background-color: red;
+            width: 250px;
+            height: 250px;
+        }
+        .rong p{
+            padding-top: 105px;
+            color: white;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the great number Game!</h1><br>
+    <p>i am thinking of a number between 1 and 100</p><br>
+    <p>take a geuss {{ request.session.random}} !</p>
+    <form action="/check" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" ><br>
+        <input type="submit" >
+    </form>
+</body>
+</html>
