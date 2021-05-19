@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0 auto;
+            text-align: center;
+        }
+        #main{
+            display: flex;
+        }
+        article{
+            flex: 1;
+        }
+        textarea{
+            width: fit-content;
+            height: fit-content;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <label for="">Your Gold</label>
+        <table>{{request.session.geust}}</table>
+        <div id="main">
+            <article>
+                <h1>Farm</h1>
+                <p>(earns 10-20 golds)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="process" value="process1" >
+                    <input type="submit"  >
+                </form>
+            </article>
+            <article>
+                <h1>Cave</h1>
+                <p>(earns 5-10 golds)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden"  name="process" value="process2" >
+                    <input type="submit"  >
+                </form>
+            </article>
+            <article>
+                <h1>House</h1>
+                <p>(earns 2-5 golds)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="process" value="process3" >
+                    <input type="submit"  >
+                    
+                </form>
+            </article>
+            <article>
+                <h1>Casino</h1>
+                <p>(earns/takes 0-50)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="process" value="process4" >
+                    <input type="submit"  >
+                </form>
+            </article>
+        </div>
+        <p>Activites</p>
+        <form action="">
+            {% csrf_token %}
+            <textarea >
+                You earned {{request.session.earn}}
+            </textarea>
+        </form>
+    </main>
+</body>
+</html>
