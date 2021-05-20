@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index),
     path('data', views.data),
     
+    
 ]

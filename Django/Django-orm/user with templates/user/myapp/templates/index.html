@@ -34,17 +34,19 @@
                 </tr>
             </thead>
             <tbody>
+                {% for i in x %}
                 <tr>
-                    <td>{{1}}</td>
-                    <td>{{1}}</td>
-                    <td>{{1}}</td>
-                    <td>{{1}}</td>
+                    <td>{{i.id}}</td>
+                    <td>{{i.first_name}} {{i.second_name}}</td>
+                    <td>{{i.email_address}}</td>
+                    <td>{{i.age}}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
         <hr>
         <h1>Add a user</h1>
-        <form action="/" method="POST">
+        <form action="/data" method="POST">
             {% csrf_token %}
             <label for="firstname">First Name</label>
             <input type="text" name="firstname" >

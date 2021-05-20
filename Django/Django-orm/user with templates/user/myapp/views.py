@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django import http
+from django.shortcuts import redirect, render,HttpResponse
+from .models import user
 def index(request):
-    return render(request,"index.html")
+    context={
+        "x" : user.objects.all()
+    }
+    return render(request,"index.html",context)
 def data(request):
-    request.session["firstname"]=request.POST["firstname"]
-    request.session["lastname"]=request.POST["lastname"]
-    request.session["email"]=request.POST["email"]
-    request.session["age"]=request.POST["age"]
-    return render(request,"index.html")
+    user.objects.create(first_name =request.POST["firstname"],secand_name =request.POST["lastname"],email_address =request.POST["email"],age =request.POST["age"])
+    return redirect("/")
