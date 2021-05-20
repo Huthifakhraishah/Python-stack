@@ -2,12 +2,15 @@ from django.shortcuts import redirect, render
 from time import gmtime, strftime
 import random
 def index(request):
-    if 'geust' is not request.session:
+    if 'geust' not in request.session:
         request.session['count']=1
         request.session["geust"]=0
         return render(request,'index.html')
     else:
-        return render(request,'index.html')
+        context={
+            "num":int(request.session['count'])
+        }
+        return render(request,'index.html',context)
 def process(request):
     if request.POST['process'] == 'process1':
         request.session['count']+=1

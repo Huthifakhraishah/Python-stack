@@ -20,6 +20,10 @@
             width: fit-content;
             height: fit-content;
         }
+        textarea{
+            width: 300px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -69,7 +73,9 @@
         <form action="">
             {% csrf_token %}
             <textarea >
-                You earned {{request.session.earn}}
+            
+            You earned {{request.session.earn}}
+           
             </textarea>
         </form>
     </main>
