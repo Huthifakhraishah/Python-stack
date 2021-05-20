@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from time import gmtime, strftime
 import random
 def index(request):
-    if request.session['geust'] == False:
+    if 'geust' is not request.session:
         request.session['count']=1
         request.session["geust"]=0
         return render(request,'index.html')
