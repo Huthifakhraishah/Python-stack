@@ -4,6 +4,7 @@ from . import views	# the . indicates that the views file can be found in the sa
 urlpatterns = [
     path('', views.index),
     path('data', views.data),
+    path('get/<id>/', views.get),
     
     
 ]

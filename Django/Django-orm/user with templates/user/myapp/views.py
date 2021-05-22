@@ -9,3 +9,8 @@ def index(request):
 def data(request):
     user.objects.create(first_name =request.POST["firstname"],secand_name =request.POST["lastname"],email_address =request.POST["email"],age =request.POST["age"])
     return redirect("/")
+def get(request,id):
+    contxt={
+        "huti":user.objects.get(id=id)
+    }
+    return render(request,"qamarway.html",contxt)
