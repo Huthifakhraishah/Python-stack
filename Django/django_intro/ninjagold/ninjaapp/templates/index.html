@@ -24,6 +24,10 @@
             width: 300px;
             text-align: center;
         }
+        textarea{
+            width: 500px;
+            height: 500px;
+        }
     </style>
 </head>
 <body>
@@ -70,14 +74,7 @@
             </article>
         </div>
         <p>Activites</p>
-        <form action="">
-            {% csrf_token %}
-            <textarea >
-            
-            You earned {{request.session.earn}}
-           
-            </textarea>
-        </form>
+            <p> {{ request.session.li }} </p> 
     </main>
 </body>
 </html>

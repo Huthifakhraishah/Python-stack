@@ -30,7 +30,7 @@
 <body>
     <h1>Welcome to the great number Game!</h1><br>
     <p>i am thinking of a number between 1 and 100</p><br>
-    <p>take a geuss {{ request.session.random}} !</p>
+    <p>take a geuss  !</p>
     <form action="/check" method="POST">
         {% csrf_token %}
         <input type="text" name="name" ><br>
