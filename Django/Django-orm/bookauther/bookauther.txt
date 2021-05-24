@@ -1,0 +1,86 @@
+ Book.objects.first().authors
+ Author.objects.first().books
+------------------------------------------------------------------------------------
+Book.objects.create(name = "C sharp", desc = "C sharp book")
+Book.objects.create(name = "Java", desc = "Java book")
+Book.objects.create(name = "Python", desc = "Python book")
+Book.objects.create(name = "PHP", desc = "PHP book")
+Book.objects.create(name = "Ruby", desc = "Ruby book")
+-------------------------------------------------------------------------------
+Author.objects.create(first_name = "ke", last_name = "Mikey", email = "M@gmail.com")
+Author.objects.create(first_name = "peros", last_name = "Spartcus", email = "Sp@gmail.com")
+Author.objects.create(first_name = "hn", last_name = "Johny", email = "Jo@gmail.com")
+Author.objects.create(first_name = "Jd", last_name = "Joodee", email = "Jadee@gmail.com")
+Author.objects.create(first_name = "Jy", last_name = "Ja", email = "J@gmail.com")
+-------------------------------------------------------------------------------------
+a = Book.objects.get(id=5)
+a.name = "C++"
+a.save()
+-------------------------------------------------------------------------------------
+a = Author.objects.get(id=5)
+a.first_name = "Ketul"
+a.save()
+---------------------------------------------------------------------------------------------
+a = Book.objects.get(id=1)
+b = Book.objects.get(id=2)
+c = Author.objects.get(id=1)
+a.authors.add(c)
+b.authors.add(c)
+a.save()
+b.save()
+-----------------------------------------------------------------------------------------------
+a = Book.objects.get(id=1)
+b = Book.objects.get(id=2)
+c = Book.objects.get(id=3)
+d = Author.objects.get(id=2)
+a.authors.add(d)
+b.authors.add(d)
+c.authors.add(d)
+a.save()
+b.save()
+c.save()
+--------------------------------------------------------------------------------------
+a = Book.objects.get(id=1)
+b = Book.objects.get(id=2)
+c = Book.objects.get(id=3)
+d = Book.objects.get(id=4)
+e = Author.objects.get(id=3)
+a.authors.add(e)
+b.authors.add(e)
+c.authors.add(e)
+d.authors.add(e)
+a.save()
+b.save()
+c.save()
+d.save()
+-----------------------------------------------------------------------------------------
+a = Book.objects.get(id=1)
+b = Book.objects.get(id=2)
+c = Book.objects.get(id=3)
+d = Book.objects.get(id=4)
+e = Book.objects.get(id=5)
+f = Author.objects.get(id=4)
+a.authors.add(f)
+b.authors.add(f)
+c.authors.add(f)
+d.authors.add(f)
+e.authors.add(f)
+a.save()
+b.save()
+c.save()
+d.save()
+e.save()
+-----------------------------------------------------------------------------------------------
+book.objects.get(id=3).authors.all()
+-----------------------------------------------------------------------
+Book.objects.get(id=3).authors.first().delete()
+---------------------------------------------------------------------------------
+a = Book.objects.get(id=2)
+b = Author.objects.get(id=5)
+a.authors.add(b)
+a.save()
+------------------------------------------------------------------------
+Book.objects.filter(authors=Author.objects.get(id=3))
+---------------------------------------------------------------------------
+Book.objects.filter(authors=Author.objects.get(id=2))
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0 auto;
+            text-align: center;
+
+        }
+        main{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="first">
+            <h1>Add a book</h1>
+            <form action="/books"  method="POST">
+                {% csrf_token %}
+                <label for="title">Title  :</label>
+                <input type="text" name="title"><br>
+                <label for="desc">Description  :</label>
+                <textarea name="desc"></textarea><br>
+                <input type="submit" value="add">
+            </form>
+        </div>
+        <div class="first">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for book in all_books %}
+                <tr>
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td><a href="books/{{book.id}}">view</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
