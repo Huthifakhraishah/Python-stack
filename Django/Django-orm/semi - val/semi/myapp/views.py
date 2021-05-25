@@ -13,6 +13,8 @@ def new(request):
     }
     return render(request,"index2.html",context)
 def create(request):
+    if len(request.POST['title'])<2 or len(request.POST['title'])<3 or  str.isalpha(request.POST['title'])== False or str.isalpha(request.POST['network']) == False  :
+        return redirect("/shows/new")
     x=Shows.objects.create(title=request.POST['title'],network=request.POST['network'],relasedate=request.POST['relasedate'],desc=request.POST['desc'])
     request.session["idid"]=request.POST['title']
     return redirect(f"shows/{x.id}")
