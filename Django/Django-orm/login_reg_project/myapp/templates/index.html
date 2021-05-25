@@ -20,8 +20,8 @@
                 <div class="card card-body">
                     <form action="/login" method="POST">
                         {% csrf_token %}
-                        <input type="text" id="login" class="fadeIn second" name="username" placeholder="username"><br>
-                        <input type="password" id="password" class="fadeIn third" name="passwd" placeholder="password"><br>
+                        <input type="text" id="login" class="fadeIn second" name="username" placeholder="username" required><br>
+                        <input type="password" id="password" class="fadeIn third" name="passwd" placeholder="password" required><br>
                         <input type="submit" class="fadeIn fourth" value="Log In">
                     </form>
                 </div>
