@@ -7,64 +7,64 @@ def index(request):
     else:
         return render(request,"index.html")
 def login(request):
-        username=request.POST["username"]
-        passwd=request.POST["passwd"]
-        if request.POST["username"] != "" and request.POST["passwd"] !="":
-            users=User.objects.filter(username=username)
-            user=users.first()             
-            if user.username == username and user.password == passwd :
-                if user.password==user.password: 
-                    data={
-                            "username":user.username,
-                            "password":user.password,
-                            "email":user.email,
-                            "address":user.address
-                        }
-                    request.session["user"]=data
-                    return redirect("/welcome")
-                return redirect("/")
-            return redirect("/")
-                # for i in User.objects.all():
-                #     if username==i.username and passwd==i.password:
-                #         data={
-                #             "username":i.username,
-                #             "password":i.password,
-                #             "email":i.email,
-                #             "address":i.address
-                #         }
-                #         request.session["user"]=data
-                #         return redirect("/welcome")
-        return redirect("/")
-    # username =request.POST['username']
-    # passwd =request.POST['passwd']
-    # users =User.objects.filter(username = username)
-    # if len(users) ==0:
-    #     return redirect('/')
-    # user =users.first()
-    # if  user.password != passwd:
-    #     return redirect('/')
-    # data={
-    #     "username":user.username,
-    #     "password":user.password,
-    #     "address":user.address,
-    #     "email":user.email
-    # }
-    # request.session['user'] = data
-    # return redirect("/welcome")
+        # username=request.POST["username"]
+        # passwd=request.POST["passwd"]
+        # if request.POST["username"] != "" and request.POST["passwd"] !="" and len(username)>2 and len(passwd)>10 and User.objects.filter(username=username) ==True:
+        #     user=User.objects.get(username=username)
+        #     if user.username == username  :
+        #         data={
+        #                 "username":user.username,
+        #                 "password":user.password,
+        #                 "email":user.email,
+        #                 "address":user.address
+        #         }
+        #         request.session["user"]=data
+        #         return redirect("/welcome")
+        #         return redirect("/")
+        #     return redirect("/")
+        #         # for i in User.objects.all():
+        #         #     if username==i.username and passwd==i.password:
+        #         #         data={
+        #         #             "username":i.username,
+        #         #             "password":i.password,
+        #         #             "email":i.email,
+        #         #             "address":i.address
+        #         #         }
+        #         #         request.session["user"]=data
+        #         #         return redirect("/welcome")
+        # return redirect("/ssssssssss")
+    username =request.POST['username']
+    passwd =request.POST['passwd']
+    users =User.objects.filter(username = username)
+    if len(users) ==0:
+        return redirect('/')
+    user =users.first()
+    if  user.password != passwd:
+        return redirect('/')
+    data={
+        "username":user.username,
+        "password":user.password,
+        "address":user.address,
+        "email":user.email
+    }
+    request.session['user'] = data
+    return redirect("/welcome")
 def reg(request):
     username=request.POST["username"]
     email=request.POST["email"]
     address=request.POST["address"]
     passwd=request.POST["passwd"]
-    data={
-        "username":username,
-        "password":passwd,
-        "email":email,
-        "address":address
-    }
-    user=User.objects.create(username=username,email=email,address=address,password=passwd)
-    request.session["user"]=data
-    return redirect("/welcome")
+    if request.POST["username"] != "" and request.POST["passwd"] !="" and len(username)>2 and len(passwd)>3  :
+        data={
+            "username":username,
+            "password":passwd,
+            "email":email,
+            "address":address
+        }
+        user=User.objects.create(username=username,email=email,address=address,password=passwd)
+        request.session["user"]=data
+        return redirect("/welcome")
+    return redirect("/")
 def welcome(request):
     if "user" in request.session:
         user=request.session["user"]

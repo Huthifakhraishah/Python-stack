@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0 auto;
+            text-align: center;
+        }
+        header{
+            display: flex;
+        }
+        .block{
+            border: 1px solid black;
+        }
+        main{
+            width: 400px;
+        }
+        h2{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Codingdojo Wall </h1>
+        <p>Welcome {{request.session.user.first_name}}</p>
+        <a href="/logout">log off</a>
+    </header><br>
+    <hr>
+    <main>
+        <h2>Post a message</h2>
+        <form action="/posting" method="POST">
+            {% csrf_token %}
+            <textarea name="postM" cols="49" rows="10"></textarea><br>
+            <input type="hidden" value="wwwwwwww">
+            <input type="submit" value="Post a message">
+        </form>
+        {% for i in messages %}
+        <div class="block">
+            <p>{{i.user.first_name}}_{{i.user.last_name}}_{{i.created_at}}</p>
+            <p>{{i.message}}</p><br>
+            {% for comment in i.messages.all %}
+            <p>{{comment.user.first_name}}_{{comment.user.last_name}}_{{comment.created_at}}</p>
+            <p>{{comment.comment}}</p>
+            {% endfor %}
+            <form action="/wall/{{i.id}}" method="POST">
+                {% csrf_token %}
+                <textarea name="postC" cols="20" rows="1"></textarea><br>
+                <input type="submit" value="comment">
+            </form>
+        </div>
+        {% endfor %}
+    </main> 
+
+
+</body>
+</html>
