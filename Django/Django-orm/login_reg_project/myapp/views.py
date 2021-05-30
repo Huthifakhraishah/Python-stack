@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render,redirect,HttpResponse
 from myapp.models import User
 from django.contrib import messages
+import bcrypt
 def index(request):
     if "user" in request.session:
         return redirect("/welcome")
@@ -46,16 +47,15 @@ def login(request):
         if len(users) ==0:
             return redirect('/')
         user =users.first()
-        if  user.password != passwd:
-            return redirect('/')
-        data={
+        if bcrypt.checkpw(request.POST['passwd'].encode(), user.password.encode()):
+            data={
             "username":user.username,
             "password":user.password,
             "address":user.address,
             "email":user.email
-        }
-        request.session['user'] = data
-        return redirect("/welcome")
+            }
+            request.session['user'] = data
+            return redirect('/welcome')
 def reg(request):
     errors = User.objects.basic_validator(request.POST)
     if len(errors)>0:
@@ -67,6 +67,7 @@ def reg(request):
         email=request.POST["email"]
         address=request.POST["address"]
         passwd=request.POST["passwd"]
+        pw_hash = bcrypt.hashpw(passwd.encode(), bcrypt.gensalt()).decode()
         if request.POST["username"] != "" and request.POST["passwd"] !="" and len(username)>2 and len(passwd)>3  :
             data={
                 "username":username,
@@ -74,7 +75,7 @@ def reg(request):
                 "email":email,
                 "address":address
             }
-            user=User.objects.create(username=username,email=email,address=address,password=passwd)
+            user=User.objects.create(username=username,email=email,address=address,password=pw_hash)
             request.session["user"]=data
             return redirect("/welcome")
     return redirect("/")
