@@ -20,9 +20,16 @@
                 <div class="card card-body">
                     <form action="/login" method="POST">
                         {% csrf_token %}
-                        <input type="text" id="login" class="fadeIn second" name="username" placeholder="username" required><br>
-                        <input type="password" id="password" class="fadeIn third" name="passwd" placeholder="password" required><br>
+                        <input type="text" id="login" class="fadeIn second" name="username" placeholder="username"><br>
+                        <input type="password" id="password" class="fadeIn third" name="passwd" placeholder="password"><br>
                         <input type="submit" class="fadeIn fourth" value="Log In">
+                        {% if messages %}
+                        <ul class="messages">    
+                            {% for message in messages %}    
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </form>
                 </div>
             </div>
@@ -37,6 +44,13 @@
                         <input type="text"  class="fadeIn third" name="address" placeholder="address"><br>
                         <input type="password" class="fadeIn third" name="passwd" placeholder="password"><br>
                         <input type="submit" class="fadeIn fourth" value="register">
+                        {% if messages %}
+                        <ul class="messages">    
+                            {% for message in messages %}    
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </form>                
                 </div>
             </div>

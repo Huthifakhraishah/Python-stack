@@ -1,6 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render,redirect,HttpResponse
 from myapp.models import User
+from django.contrib import messages
 def index(request):
     if "user" in request.session:
         return redirect("/welcome")
@@ -33,37 +34,49 @@ def login(request):
         #         #         request.session["user"]=data
         #         #         return redirect("/welcome")
         # return redirect("/ssssssssss")
-    username =request.POST['username']
-    passwd =request.POST['passwd']
-    users =User.objects.filter(username = username)
-    if len(users) ==0:
+    errors = User.objects.basic_log(request.POST)
+    if len(errors)>0:
+        for key, value in errors.items():
+                messages.error(request, value)
         return redirect('/')
-    user =users.first()
-    if  user.password != passwd:
-        return redirect('/')
-    data={
-        "username":user.username,
-        "password":user.password,
-        "address":user.address,
-        "email":user.email
-    }
-    request.session['user'] = data
-    return redirect("/welcome")
-def reg(request):
-    username=request.POST["username"]
-    email=request.POST["email"]
-    address=request.POST["address"]
-    passwd=request.POST["passwd"]
-    if request.POST["username"] != "" and request.POST["passwd"] !="" and len(username)>2 and len(passwd)>3  :
+    else:    
+        username =request.POST['username']
+        passwd =request.POST['passwd']
+        users =User.objects.filter(username = username)
+        if len(users) ==0:
+            return redirect('/')
+        user =users.first()
+        if  user.password != passwd:
+            return redirect('/')
         data={
-            "username":username,
-            "password":passwd,
-            "email":email,
-            "address":address
+            "username":user.username,
+            "password":user.password,
+            "address":user.address,
+            "email":user.email
         }
-        user=User.objects.create(username=username,email=email,address=address,password=passwd)
-        request.session["user"]=data
+        request.session['user'] = data
         return redirect("/welcome")
+def reg(request):
+    errors = User.objects.basic_validator(request.POST)
+    if len(errors)>0:
+        for key, value in errors.items():
+                messages.error(request, value)
+        return redirect('/')
+    else:  
+        username=request.POST["username"]
+        email=request.POST["email"]
+        address=request.POST["address"]
+        passwd=request.POST["passwd"]
+        if request.POST["username"] != "" and request.POST["passwd"] !="" and len(username)>2 and len(passwd)>3  :
+            data={
+                "username":username,
+                "password":passwd,
+                "email":email,
+                "address":address
+            }
+            user=User.objects.create(username=username,email=email,address=address,password=passwd)
+            request.session["user"]=data
+            return redirect("/welcome")
     return redirect("/")
 def welcome(request):
     if "user" in request.session:
